@@ -10,3 +10,10 @@ dependencies {
     implementation(project(":image"))
     implementation(project(":video"))
 }
+
+tasks.processResources {
+    filesMatching("*.yml") {
+        expand("version" to version)
+    }
+}
+
