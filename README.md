@@ -19,6 +19,8 @@
   <p align="center">
     A Spigot library to easily display images and videos on maps.
     <br />
+    <b>WARNING: This library is a work-in-progress and breaking changes may occur at any time!</b>
+    <br />
     <a href="https://javadoc.io/doc/net.insprill/map-displays"><strong>View Javadocs »</strong></a>
     <br />
     <br />
