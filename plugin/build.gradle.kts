@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.7.10"
+    id("com.rikonardo.papermake") version "1.0.4"
 }
 
 version = project.property("plugin.version")!!
