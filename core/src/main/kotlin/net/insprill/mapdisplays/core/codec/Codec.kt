@@ -1,12 +1,12 @@
 package net.insprill.mapdisplays.core.codec
 
-import java.io.InputStream
-import java.io.OutputStream
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 
 interface Codec<T> {
 
-    fun encode(obj: T): OutputStream
+    fun encode(obj: T): ByteArrayOutputStream
 
-    fun decode(stream: InputStream): T
+    fun decode(stream: ByteArrayInputStream): T
 
 }
