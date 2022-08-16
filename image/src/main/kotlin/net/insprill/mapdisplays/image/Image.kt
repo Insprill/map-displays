@@ -17,9 +17,8 @@ class Image {
         repeat(MAP_SIZE) { x ->
             repeat(MAP_SIZE) { y ->
                 val mapCoord = MapCoord(x, y)
-                val color = Color(resizedImage.getRGB(x, y))
                 @Suppress("DEPRECATION")
-                val mapColor = MapPalette.matchColor(color.red, color.green, color.blue)
+                val mapColor = MapPalette.matchColor(Color(resizedImage.getRGB(x, y)))
                 val pixel = imagePixels.getOrDefault(mapColor, Pixel(mapColor))
                 pixel.addCoord(mapCoord)
                 imagePixels[mapColor] = pixel
