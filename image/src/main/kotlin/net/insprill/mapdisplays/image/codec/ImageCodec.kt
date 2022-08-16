@@ -13,7 +13,7 @@ import java.io.OutputStream
 
 object ImageCodec : Codec<Image> {
 
-    private const val CODEC_VERSION = 1
+    private const val CODEC_VERSION = 0
 
     override fun encode(obj: Image): ByteArrayOutputStream {
         val output = ByteArrayOutputStream()
