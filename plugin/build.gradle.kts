@@ -8,8 +8,13 @@ plugins {
 
 version = project.property("plugin.version")!!
 
+repositories {
+    maven("https://repo.aikar.co/content/groups/aikar/")
+}
+
 dependencies {
     compileOnly("org.spigotmc:spigot-api:${project.property("common.spigot-api.version")!!}")
+    implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     implementation(project(":core"))
     implementation(project(":image"))
     implementation(project(":video"))
