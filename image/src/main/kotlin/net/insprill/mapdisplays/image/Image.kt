@@ -12,7 +12,7 @@ class Image {
 
     constructor(rawImage: Image) {
         val resizedImage = MapPalette.resizeImage(rawImage)
-        val imagePixels = mapOf<Byte, Pixel>()
+        val imagePixels = HashMap<Byte, Pixel>()
         this.pixels = ArrayList()
         repeat(MAP_SIZE) { x ->
             repeat(MAP_SIZE) { y ->
@@ -22,9 +22,10 @@ class Image {
                 val mapColor = MapPalette.matchColor(color.red, color.green, color.blue)
                 val pixel = imagePixels.getOrDefault(mapColor, Pixel(mapColor))
                 pixel.addCoord(mapCoord)
-                pixels.add(pixel)
+                imagePixels[mapColor] = pixel
             }
         }
+        pixels.addAll(imagePixels.values)
     }
 
     constructor(pixels: List<Pixel>) {
