@@ -1,0 +1,6 @@
+name: map-displays
+version: '${version}'
+main: net.insprill.mapdisplays.MapDisplays
+api-version: 1.13
+authors: [ Insprill ]
+website: https://github.com/Insprill/map-displays
