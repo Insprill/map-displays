@@ -26,16 +26,22 @@ tasks.processResources {
     }
 }
 
+tasks.jar {
+    enabled = false
+}
+
+task<ConfigureShadowRelocation>("relocateShadowJar") {
+    target = tasks.shadowJar.get()
+    prefix = "net.insprill.mapdisplays.plugin.libs"
+}
+
 tasks.shadowJar {
+    dependsOn(tasks.getByName("relocateShadowJar"))
+    archiveBaseName.set(rootProject.name)
     archiveClassifier.set("")
     minimize()
 }
 
-tasks.withType<ConfigureShadowRelocation> {
-    target = tasks.shadowJar.get()
-}
-
 tasks.build {
     dependsOn(tasks.shadowJar)
-    dependsOn(tasks.withType<ConfigureShadowRelocation>())
 }
