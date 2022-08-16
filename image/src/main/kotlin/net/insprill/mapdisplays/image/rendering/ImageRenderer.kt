@@ -8,8 +8,7 @@ import org.bukkit.map.MapView
 
 class ImageRenderer(private val image: Image) : MapRenderer() {
 
-    override fun render(map: MapView?, canvas: MapCanvas?, player: Player?) {
-        if (canvas == null) return
+    override fun render(map: MapView, canvas: MapCanvas, player: Player) {
         for (pixel in image.pixels) {
             for (coord in pixel.mapCoords) {
                 canvas.setPixel(coord.x, coord.y, pixel.color)
