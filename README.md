@@ -17,7 +17,7 @@
 <h3 align="center">Map Displays</h3>
 
   <p align="center">
-    A Spigot library to easily display images and videos on maps.
+    A Spigot library and plugin to easily display images and videos on maps.
     <br />
     <b>WARNING: This library is a work-in-progress and breaking changes may occur at any time!</b>
     <br />
@@ -49,7 +49,7 @@
 
 ## About The Project
 
-Map Displays is a library that allows you to easily display images and video on maps.  
+Map Displays is a library and plugin that allows you to easily display images and video on maps.  
 This includes a built-in way to save those maps to disk to be loaded again after a server restart.
 
 
