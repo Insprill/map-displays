@@ -1,8 +1,8 @@
-package net.insprill.mapdisplays.image.cache
+package net.insprill.mapdisplays.image.codec.cache
 
 import com.google.common.primitives.Ints
 import net.insprill.mapdisplays.core.MapCoord
-import net.insprill.mapdisplays.core.cache.CachedCodec
+import net.insprill.mapdisplays.core.codec.cache.CachedCodec
 import net.insprill.mapdisplays.core.exception.DecodeException
 import net.insprill.mapdisplays.image.Image
 import net.insprill.mapdisplays.image.Pixel
