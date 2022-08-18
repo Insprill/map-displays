@@ -14,7 +14,7 @@ class CachedImageCodecTest {
 
     @BeforeEach
     fun setup() {
-        image = CachedImageCodec.decode(this.javaClass.classLoader.getResourceAsStream("image.png")!!)
+        image = SourceImageCodec.decode(this.javaClass.classLoader.getResourceAsStream("image.png")!!)
     }
 
     @Test
