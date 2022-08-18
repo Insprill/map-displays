@@ -3,9 +3,8 @@ package net.insprill.mapdisplays.plugin.command
 import co.aikar.commands.BaseCommand
 import co.aikar.commands.annotation.CommandAlias
 import co.aikar.commands.annotation.Subcommand
-import net.insprill.mapdisplays.image.codec.source.SourceMultiImageCodec
 import net.insprill.mapdisplays.image.codec.source.SourceImageCodec
-import net.insprill.mapdisplays.image.rendering.ImageRenderer
+import net.insprill.mapdisplays.image.codec.source.SourceMultiImageCodec
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
@@ -20,10 +19,7 @@ class MapDisplaysCommand(private val plugin: JavaPlugin) : BaseCommand() {
     fun giveImage(player: Player) {
         val img = SourceImageCodec.decode(plugin.getResource("image.png")!!)
         val map = Bukkit.createMap(player.world)
-        for (renderer in map.renderers) {
-            map.removeRenderer(renderer)
-        }
-        map.addRenderer(ImageRenderer(img))
+        img.applyToMap(map)
         val item = ItemStack(Material.FILLED_MAP)
         val meta = item.itemMeta as MapMeta
         meta.mapView = map
@@ -37,10 +33,7 @@ class MapDisplaysCommand(private val plugin: JavaPlugin) : BaseCommand() {
         println("image count: ${images.size}")
         for (img in images) {
             val map = Bukkit.createMap(player.world)
-            for (renderer in map.renderers) {
-                map.removeRenderer(renderer)
-            }
-            map.addRenderer(ImageRenderer(img))
+            img.applyToMap(map)
             val item = ItemStack(Material.FILLED_MAP)
             val meta = item.itemMeta as MapMeta
             meta.setDisplayName("${img.multiPos.x} ${img.multiPos.y}")

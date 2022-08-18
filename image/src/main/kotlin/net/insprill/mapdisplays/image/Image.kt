@@ -1,6 +1,8 @@
 package net.insprill.mapdisplays.image
 
 import net.insprill.mapdisplays.core.MapCoord
+import net.insprill.mapdisplays.image.rendering.ImageRenderer
+import org.bukkit.map.MapView
 
 class Image {
 
@@ -12,6 +14,11 @@ class Image {
     constructor(pixels: List<Pixel>, multiPos: MapCoord) {
         this.pixels = ArrayList(pixels)
         this.multiPos = multiPos
+    }
+
+    fun applyToMap(view: MapView) {
+        view.renderers.forEach { r -> view.removeRenderer(r) }
+        view.addRenderer(ImageRenderer(this))
     }
 
     override fun equals(other: Any?): Boolean {
