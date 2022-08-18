@@ -2,7 +2,7 @@ package net.insprill.mapdisplays.image.codec.source
 
 import net.insprill.mapdisplays.core.Constants
 import net.insprill.mapdisplays.core.MapCoord
-import net.insprill.mapdisplays.core.codec.source.SourceCodec
+import net.insprill.mapdisplays.core.codec.Decoder
 import net.insprill.mapdisplays.image.Image
 import net.insprill.mapdisplays.image.Pixel
 import org.bukkit.map.MapPalette
@@ -10,7 +10,7 @@ import java.awt.Color
 import java.io.InputStream
 import javax.imageio.ImageIO
 
-object SourceImageCodec : SourceCodec<Image> {
+object ImageDecoder : Decoder<Image> {
 
     override fun decode(input: InputStream): Image {
         return decode(ImageIO.read(input))

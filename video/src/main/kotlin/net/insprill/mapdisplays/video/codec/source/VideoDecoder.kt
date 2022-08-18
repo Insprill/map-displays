@@ -1,6 +1,6 @@
 package net.insprill.mapdisplays.video.codec.source
 
-import net.insprill.mapdisplays.core.codec.source.SourceCodec
+import net.insprill.mapdisplays.core.codec.Decoder
 import net.insprill.mapdisplays.video.Video
 import org.bukkit.map.MapPalette
 import org.jcodec.api.FrameGrab
@@ -11,7 +11,7 @@ import java.io.InputStream
 import java.nio.ByteBuffer
 import kotlin.math.floor
 
-class SourceVideoCodec : SourceCodec<Video> {
+class VideoDecoder : Decoder<Video> {
 
     override fun decode(input: InputStream): Video {
         val bytes = input.readAllBytes()
