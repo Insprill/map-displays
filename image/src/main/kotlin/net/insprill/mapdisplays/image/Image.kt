@@ -1,11 +1,17 @@
 package net.insprill.mapdisplays.image
 
-class Image(pixels: List<Pixel>) {
+import net.insprill.mapdisplays.core.MapCoord
+
+class Image {
 
     val pixels: ArrayList<Pixel>
+    val multiPos: MapCoord
 
-    init {
+    constructor(pixels: List<Pixel>) : this(pixels, MapCoord(0, 0))
+
+    constructor(pixels: List<Pixel>, multiPos: MapCoord) {
         this.pixels = ArrayList(pixels)
+        this.multiPos = multiPos
     }
 
     override fun equals(other: Any?): Boolean {
@@ -15,16 +21,19 @@ class Image(pixels: List<Pixel>) {
         other as Image
 
         if (pixels != other.pixels) return false
+        if (multiPos != other.multiPos) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        return pixels.hashCode()
+        var result = pixels.hashCode()
+        result = 31 * result + multiPos.hashCode()
+        return result
     }
 
     override fun toString(): String {
-        return "Image(pixels=$pixels)"
+        return "Image(pixels=$pixels, multiPos=$multiPos)"
     }
 
 }

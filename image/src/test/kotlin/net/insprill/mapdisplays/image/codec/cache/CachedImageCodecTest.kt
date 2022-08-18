@@ -1,5 +1,6 @@
 package net.insprill.mapdisplays.image.codec.cache
 
+import net.insprill.mapdisplays.core.MapCoord
 import net.insprill.mapdisplays.image.Image
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -20,8 +21,8 @@ class CachedImageCodecTest {
     fun encode() {
         val encoded = CachedImageCodec.encode(image)
 
-        assertTrue(encoded.size() > 0)
         assertNotNull(encoded)
+        assertTrue(encoded.size() > 0)
     }
 
     @Test
@@ -29,8 +30,10 @@ class CachedImageCodecTest {
         val encoded = CachedImageCodec.encode(image)
 
         val decoded = CachedImageCodec.decode(encoded.toByteArray().inputStream())
-        assertTrue(decoded.pixels.size > 0)
+
         assertNotNull(decoded)
+        assertTrue(decoded.pixels.size > 0)
+        assertEquals(MapCoord(0, 0), decoded.multiPos)
     }
 
     @Test

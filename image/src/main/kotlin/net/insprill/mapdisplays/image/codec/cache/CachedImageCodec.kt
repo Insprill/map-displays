@@ -18,6 +18,8 @@ object CachedImageCodec : CachedCodec<Image> {
     override fun encode(obj: Image): ByteArrayOutputStream {
         val output = ByteArrayOutputStream()
         output.write(CODEC_VERSION)
+        output.write(obj.multiPos.x)
+        output.write(obj.multiPos.y)
         output.writeLarge(obj.pixels.size)
         for (pixel in obj.pixels) {
             output.write(pixel.color.toInt())
@@ -34,6 +36,7 @@ object CachedImageCodec : CachedCodec<Image> {
         val codec = input.read()
         if (codec != CODEC_VERSION)
             throw DecodeException("Unknown codec version $codec")
+        val multiPos = MapCoord(input.read(), input.read())
         val pixels = ArrayList<Pixel>()
         val pixelCount = input.readLarge()
         repeat(pixelCount) {
@@ -47,7 +50,7 @@ object CachedImageCodec : CachedCodec<Image> {
             }
             pixels.add(pixel)
         }
-        return Image(pixels)
+        return Image(pixels, multiPos)
     }
 
     private fun OutputStream.writeLarge(i: Int) {
