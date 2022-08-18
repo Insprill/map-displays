@@ -1,8 +1,8 @@
-package net.insprill.mapdisplays.image.codec
+package net.insprill.mapdisplays.image.cache
 
 import com.google.common.primitives.Ints
 import net.insprill.mapdisplays.core.MapCoord
-import net.insprill.mapdisplays.core.codec.Codec
+import net.insprill.mapdisplays.core.cache.CachedCodec
 import net.insprill.mapdisplays.core.exception.DecodeException
 import net.insprill.mapdisplays.image.Image
 import net.insprill.mapdisplays.image.Pixel
@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 
-object ImageCodec : Codec<Image> {
+object CachedImageCodec : CachedCodec<Image> {
 
     private const val CODEC_VERSION = 0
 
@@ -30,8 +30,7 @@ object ImageCodec : Codec<Image> {
         return output
     }
 
-    override fun decode(stream: ByteArrayInputStream): Image {
-        val input = stream.buffered()
+    override fun decode(input: ByteArrayInputStream): Image {
         val codec = input.read()
         if (codec != CODEC_VERSION)
             throw DecodeException("Unknown codec version $codec")

@@ -1,12 +1,12 @@
-package net.insprill.mapdisplays.core.codec
+package net.insprill.mapdisplays.core.cache
 
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
-interface Codec<T> {
+interface CachedCodec<T> {
 
     fun encode(obj: T): ByteArrayOutputStream
 
-    fun decode(stream: ByteArrayInputStream): T
+    fun decode(input: ByteArrayInputStream): T
 
 }
