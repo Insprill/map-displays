@@ -2,6 +2,7 @@ package net.insprill.mapdisplays.image.codec.cache
 
 import net.insprill.mapdisplays.core.MapCoord
 import net.insprill.mapdisplays.image.Image
+import net.insprill.mapdisplays.image.codec.ImageCodecs
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -14,7 +15,7 @@ class CachedImageCodecTest {
 
     @BeforeEach
     fun setup() {
-        image = SourceImageCodec.decode(this.javaClass.classLoader.getResourceAsStream("image.png")!!)
+        image = ImageCodecs.imageDecoder.decode(this.javaClass.classLoader.getResourceAsStream("image.png")!!)
     }
 
     @Test
