@@ -18,7 +18,11 @@ object ImageDecoder : Decoder<Image, BufferedImage> {
     }
 
     override fun decode(input: BufferedImage): Image {
-        val resizedImage = MapPalette.resizeImage(input)
+        val image = if (input.getWidth(null) == MAP_SIZE && input.getHeight(null) == MAP_SIZE) {
+            input
+        } else {
+            MapPalette.resizeImage(input)
+        }
         val imagePixels = HashMap<Byte, Pixel>()
         val pixels = ArrayList<Pixel>()
         repeat(MAP_SIZE) { x ->
@@ -26,7 +30,7 @@ object ImageDecoder : Decoder<Image, BufferedImage> {
                 val mapCoord = MapCoord(x, y)
 
                 @Suppress("DEPRECATION")
-                val mapColor = MapPalette.matchColor(Color(resizedImage.getRGB(x, y)))
+                val mapColor = MapPalette.matchColor(Color(image.getRGB(x, y)))
                 val pixel = imagePixels.getOrDefault(mapColor, Pixel(mapColor))
                 pixel.addCoord(mapCoord)
                 imagePixels[mapColor] = pixel
