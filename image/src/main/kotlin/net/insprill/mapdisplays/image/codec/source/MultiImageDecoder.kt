@@ -2,7 +2,7 @@ package net.insprill.mapdisplays.image.codec.source
 
 import net.insprill.mapdisplays.core.Constants.MAP_SIZE
 import net.insprill.mapdisplays.core.MapCoord
-import net.insprill.mapdisplays.core.codec.Decoder
+import net.insprill.mapdisplays.core.codec.MultiDecoder
 import net.insprill.mapdisplays.image.Image
 import java.awt.image.BufferedImage
 import java.io.InputStream
@@ -10,7 +10,7 @@ import javax.imageio.ImageIO
 import kotlin.math.ceil
 import kotlin.math.max
 
-object MultiImageDecoder : Decoder<List<Image>> {
+object MultiImageDecoder : MultiDecoder<Image> {
 
     override fun decode(input: InputStream): List<Image> {
         return decode(ImageIO.read(input))
