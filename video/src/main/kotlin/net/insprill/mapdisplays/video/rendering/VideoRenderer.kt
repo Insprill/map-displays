@@ -9,7 +9,10 @@ import org.bukkit.map.MapView
 class VideoRenderer(private val video: Video) : MapRenderer() {
 
     override fun render(map: MapView, canvas: MapCanvas, player: Player) {
-        TODO("Not yet implemented")
+        val changes = video.nextChanges() ?: return
+        for (change in changes) {
+            canvas.setPixel(change.key.x, change.key.y, change.value)
+        }
     }
 
 }
