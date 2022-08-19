@@ -2,6 +2,7 @@ package net.insprill.mapdisplays.image
 
 import net.insprill.mapdisplays.core.MapCoord
 import net.insprill.mapdisplays.image.rendering.ImageRenderer
+import org.bukkit.Bukkit
 import org.bukkit.map.MapView
 
 class Image {
@@ -14,6 +15,12 @@ class Image {
     constructor(pixels: List<Pixel>, multiPos: MapCoord) {
         this.pixels = ArrayList(pixels)
         this.multiPos = multiPos
+    }
+
+    fun createMap(): MapView {
+        val map = Bukkit.createMap(Bukkit.getWorlds()[0])
+        applyToMap(map)
+        return map
     }
 
     fun applyToMap(view: MapView) {
