@@ -10,27 +10,27 @@ import javax.imageio.ImageIO
 import kotlin.math.ceil
 import kotlin.math.max
 
-object MultiImageDecoder : MultiDecoder<Image> {
+object MultiImageDecoder : MultiDecoder<Image, java.awt.Image> {
 
     override fun decode(input: InputStream): List<Image> {
         return decode(ImageIO.read(input))
     }
 
-    fun decode(rawImage: java.awt.Image): List<Image> {
-        val imgWidth = rawImage.getWidth(null)
-        val imgHeight = rawImage.getHeight(null)
+    override fun decode(input: java.awt.Image): List<Image> {
+        val imgWidth = input.getWidth(null)
+        val imgHeight = input.getHeight(null)
         val countX = nextMultiple(imgWidth, MAP_SIZE) / MAP_SIZE
         val countY = nextMultiple(imgHeight, MAP_SIZE) / MAP_SIZE
         val images = ArrayList<Image>()
 
         val bufferedImage: BufferedImage
-        if (rawImage !is BufferedImage) {
+        if (input !is BufferedImage) {
             bufferedImage = BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB)
             val tmpGraphics = bufferedImage.createGraphics()
-            tmpGraphics.drawImage(rawImage, 0, 0, null)
+            tmpGraphics.drawImage(input, 0, 0, null)
             tmpGraphics.dispose()
         } else {
-            bufferedImage = rawImage
+            bufferedImage = input
         }
 
         repeat(countY) { arrY -> // Loop Y first so maps can be placed in rows, not columns

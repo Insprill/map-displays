@@ -10,14 +10,14 @@ import java.awt.Color
 import java.io.InputStream
 import javax.imageio.ImageIO
 
-object ImageDecoder : Decoder<Image> {
+object ImageDecoder : Decoder<Image, java.awt.Image> {
 
     override fun decode(input: InputStream): Image {
         return decode(ImageIO.read(input))
     }
 
-    fun decode(rawImage: java.awt.Image): Image {
-        val resizedImage = MapPalette.resizeImage(rawImage)
+    override fun decode(input: java.awt.Image): Image {
+        val resizedImage = MapPalette.resizeImage(input)
         val imagePixels = HashMap<Byte, Pixel>()
         val pixels = ArrayList<Pixel>()
         repeat(Constants.MAP_SIZE) { x ->

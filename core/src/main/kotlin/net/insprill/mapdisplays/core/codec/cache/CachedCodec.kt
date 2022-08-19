@@ -6,11 +6,11 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.InputStream
 
-interface CachedCodec<T> : Decoder<T> {
+interface CachedCodec<T> : Decoder<T, ByteArrayInputStream> {
 
     fun encode(obj: T): ByteArrayOutputStream
 
-    fun decode(input: ByteArrayInputStream): T
+    override fun decode(input: ByteArrayInputStream): T
 
     override fun decode(input: InputStream): T {
         return decode(input.readAllBytes().inputStream())
