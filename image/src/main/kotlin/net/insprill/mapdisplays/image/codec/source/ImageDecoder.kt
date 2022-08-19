@@ -1,27 +1,28 @@
 package net.insprill.mapdisplays.image.codec.source
 
-import net.insprill.mapdisplays.core.Constants
+import net.insprill.mapdisplays.core.Constants.MAP_SIZE
 import net.insprill.mapdisplays.core.MapCoord
 import net.insprill.mapdisplays.core.codec.Decoder
 import net.insprill.mapdisplays.image.Image
 import net.insprill.mapdisplays.image.Pixel
 import org.bukkit.map.MapPalette
 import java.awt.Color
+import java.awt.image.BufferedImage
 import java.io.InputStream
 import javax.imageio.ImageIO
 
-object ImageDecoder : Decoder<Image, java.awt.Image> {
+object ImageDecoder : Decoder<Image, BufferedImage> {
 
     override fun decode(input: InputStream): Image {
         return decode(ImageIO.read(input))
     }
 
-    override fun decode(input: java.awt.Image): Image {
+    override fun decode(input: BufferedImage): Image {
         val resizedImage = MapPalette.resizeImage(input)
         val imagePixels = HashMap<Byte, Pixel>()
         val pixels = ArrayList<Pixel>()
-        repeat(Constants.MAP_SIZE) { x ->
-            repeat(Constants.MAP_SIZE) { y ->
+        repeat(MAP_SIZE) { x ->
+            repeat(MAP_SIZE) { y ->
                 val mapCoord = MapCoord(x, y)
 
                 @Suppress("DEPRECATION")
