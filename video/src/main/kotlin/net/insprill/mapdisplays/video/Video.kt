@@ -5,10 +5,24 @@ import net.insprill.mapdisplays.video.rendering.VideoRenderer
 import org.bukkit.Bukkit
 import org.bukkit.map.MapView
 
-class Video(private val frameCount: Int, val multiPos: MapCoord) {
+class Video {
 
-    private val frameData = HashMap<Int, HashMap<MapCoord, Byte>>()
+    val frameCount: Int
+    val multiPos: MapCoord
+    val frameData: HashMap<Int, HashMap<MapCoord, Byte>>
     private var currFrame = 0
+
+    constructor(frameCount: Int, multiPos: MapCoord) {
+        this.frameCount = frameCount
+        this.multiPos = multiPos
+        this.frameData = HashMap()
+    }
+
+    constructor(frameData: HashMap<Int, HashMap<MapCoord, Byte>>, frameCount: Int, multiPos: MapCoord) {
+        this.frameData = frameData
+        this.frameCount = frameCount
+        this.multiPos = multiPos
+    }
 
     fun nextChanges(): Map<MapCoord, Byte>? {
         if (currFrame >= frameCount)
