@@ -55,4 +55,30 @@ class Video {
         view.addRenderer(VideoRenderer(this))
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Video
+
+        if (frameCount != other.frameCount) return false
+        if (multiPos != other.multiPos) return false
+        if (frameData != other.frameData) return false
+        if (currFrame != other.currFrame) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = frameCount
+        result = 31 * result + multiPos.hashCode()
+        result = 31 * result + frameData.hashCode()
+        result = 31 * result + currFrame
+        return result
+    }
+
+    override fun toString(): String {
+        return "Video(frameCount=$frameCount, multiPos=$multiPos, frameData=$frameData, currFrame=$currFrame)"
+    }
+
 }
