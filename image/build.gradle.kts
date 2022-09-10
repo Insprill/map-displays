@@ -15,7 +15,7 @@ dependencies {
     // Test dependencies
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
-    testImplementation("com.github.seeseemelk:MockBukkit-v1.19:2.117.3")
+    testImplementation("com.github.seeseemelk:MockBukkit-v1.19:2.119.0")
 }
 
 tasks.test {
